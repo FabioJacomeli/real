@@ -11,7 +11,7 @@ def home():
     if request.method == 'POST':
         red = float(request.form.get('Rendimentos tributáveis'))
         if red == float(0):
-            red = float(0.001)
+            red = float(0.0001)
         qtd_dep = int(request.form.get('Quantidade de dependentes'))
         ded_outras = float(request.form.get('Outras deduções'))
 
