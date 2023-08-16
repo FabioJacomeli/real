@@ -1,2 +1,2 @@
-# SR
+# Salário Real
 app
