@@ -16,42 +16,46 @@
 	<header>
 		<p style="margin-top: 0px; margin-bottom: 0px;" align="RIGHT"><a href="/login">ACESSAR CONTA</a></p>
 		<h1>SR - Salário Real - Tributos, Impostos, Taxas e Sociedade.</h1>
+        <div>
+            <button name="button"><a href="/">Home</a></button>
+        </div>
 	</header>
     <main>
         <div class="wrapper">
             <header class="header">
-                <h1>Calculadora de Salário Líquido</h1>
+                <h1>Calculadora de Folha de pagamento de empregado(a) doméstico(a).</h1>
                 <h2>Tabelas de IR e INSS atualizadas!</h2>
-                <h3>A calculadora retorna o valor do salário, descontado o IR, INSS e outras deduções legais, se houver.</h3>
-                <h3>Preencha os campos abaixo para realizar o cálculo do salário líquido mensal.</h3>
-                <form method="POST" action="/">
+                <h4>A calculadora retorna o valor do salário líquido do(a) trabalhador(a), o valor dos tributos a serem recolhidos e o valor total que o empregador desembolsará.</h4>
+                <p>O site SALÁRIO REAL é um serviço gratuito que se propõe a auxiliar o usuário como simples referência e verificação de cálculos. Este serviço não deve ser utilizado em substituição a um profissional habilitado.</p>
+                <h3>Preencha os campos abaixo para realizar o cálculo:.</h3>
+                <form method="POST" action="/domestic">
 					<div>
 						<table style="border-collapse: collapse; margin:auto;" width="85%" cellspacing="1" bordercolor="#666" border="1"></table>
 							<tbody>				
 								<tr> 
 									<td width="23%" valign="MIDDLE" bgcolor="#ffffff">
-									<p style="margin-top: 0px; margin-bottom: 0px;" align="CENTER"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 10pt;"><label for="rendimentos">Rendimentos tributáveis:</label></span></p>
+									<p style="margin-top: 0px; margin-bottom: 0px;" align="CENTER"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 10pt;"><label for="salario">Salário do(a) trabalhador(a):</label></span></p>
 									</td>
 									<td width="23%" valign="MIDDLE" bgcolor="#ffffff">
-									<p style="margin-top: 0px; margin-bottom: 0px;" align="CENTER"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 10pt;"><input type="text" placeholder="Valor maior que 0.00" id="redimentos" name="Rendimentos tributáveis" pattern="[0.01-9]{1,15}" required class="validity"></span></p>
+									<p style="margin-top: 0px; margin-bottom: 0px;" align="CENTER"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 10pt;"><input type="text" placeholder="Valor maior que 0.00" id="salario" name="Salário do(a) trabalhador(a)" pattern="[0.01-9]{1,15}" required class="validity"></span></p>
 									</td>
 								</tr>
 								<tr>
 									<td width="23%" valign="MIDDLE" bgcolor="#ffffff">
-									<p style="margin-top: 0px; margin-bottom: 0px;" align="CENTER"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 10pt;"><label for="dependentes">Quantidade de dependentes:</label></span></p>
+									<p style="margin-top: 0px; margin-bottom: 0px;" align="CENTER"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 10pt;"><label for="depen">Qtde de dependentes:</label></span></p>
 									</td>
 									<td width="23%" valign="MIDDLE" bgcolor="#ffffff">
-									<p style="margin-top: 0px; margin-bottom: 0px;" align="CENTER"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 10pt;"><input type="text" placeholder="0 ou maior que 0" id="dependentes" name="Quantidade de dependentes" pattern="[0-9]{1,2}" required class="validity"></span></p>
+									<p style="margin-top: 0px; margin-bottom: 0px;" align="CENTER"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 10pt;"><input type="text" placeholder="0 ou maior que 0" id="depen" name="Qtde de dependentes" pattern="[0-9]{1,2}" required class="validity"></span></p>
 									</td>
 								</tr>
-								<tr>
+								<!--<tr>
 									<td width="23%" valign="MIDDLE" bgcolor="#ffffff">
 									<p style="margin-top: 0px; margin-bottom: 0px;" align="CENTER"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 10pt;"><label for="deduções">Outras deduções:</label></span></p>
 									</td>
 									<td width="23%" valign="MIDDLE" bgcolor="#ffffff">
 									<p style="margin-top: 0px; margin-bottom: 0px;" align="CENTER"><span style="font-family: Arial, Helvetica, sans-serif; font-size: 10pt;"><input type="text" placeholder="0.00 ou maior que 0.00" id="deduções" name="Outras deduções" pattern="[0.01-9]{1,15}" required class="validity"></span></p>
 									</td>
-								</tr>
+								</tr>-->
 							</tbody>
 						</table>			
 					</div>
@@ -64,10 +68,7 @@
 			</header>
             <article class="content">
                 <body>
-					<div>
-						<h2 style="margin-top: 0px; margin-bottom: 0px;" align="CENTER"><a href="/domestic">Calcule aqui a Folha de pagamento de empregado(a) doméstico(a)!</a></h2>
-					</div>
-					<h1>Cálculos realizados de acordo com as normas da Receita Federal do Brasil - RFB e do Instituto Nacional do Seguro Social - INSS.</h1>
+					<h1>Cálculos realizados de acordo com as normas do e-Social.</h1>
                 </body>
             </article>
             <div id="txt_cest">
