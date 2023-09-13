@@ -226,8 +226,8 @@ def login():
     if request.method == 'POST':
         email = request.form.get('username')
         senha = request.form.get('password')
-        a = 'fabio@teste.com'
-        b = 'aaa'
+        a = 'adm'
+        b = '***'
         if email == a and senha == b:
             return render_template ("logado.html", l = email)
     return render_template ("login.html")
