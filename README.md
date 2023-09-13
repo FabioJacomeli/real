@@ -4,7 +4,7 @@ app
 
 Pré-requisitos:
 
-Python - Flask
-Mysql
-VScode
+> Python - Flask
+> Mysql
+> VScode
 
