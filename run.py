@@ -1,10 +1,12 @@
 #!/bin/python
 # -*- coding: utf-8 -*-
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, flash
 import mysql.connector
+import json
 
 DEBUG = True
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'REAL'
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -198,7 +200,7 @@ def domestic():
 
         cpp = round((float(red) * float(0.08)), 2)
 
-        gilrat = round((float(red) * float(0.0008)), 2)
+        gilrat = round((float(red) * float(0.008)), 2)
 
         fgts = round((float(red) * float(0.08)), 2)
 
@@ -220,7 +222,6 @@ def domestic():
     
     return render_template ("domestic.html")
 
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -230,6 +231,9 @@ def login():
         b = '***'
         if email == a and senha == b:
             return render_template ("logado.html", l = email)
+        else:
+            flash('Usuário não cadastrado!')
+            return redirect('/login')
     return render_template ("login.html")
     
 @app.route('/cadastrar', methods=['GET', 'POST'])
@@ -247,9 +251,9 @@ def cadastrar():
         nome = (request.form.get('Nome'))
         email = (request.form.get('Email'))
         senha = (request.form.get('Senha'))
-        perfil = (request.form.get('Usuario', 'Profissional'))
+        perfil = (request.form.get('Usuário', 'Profissional'))
 
-        comando = F'INSERT INTO cadastro (nome, email, senha, perfil) VALUES ("{nome}", "{email}", "{senha}", "{perfil}")'
+        comando = f'INSERT INTO cadastro (nome, email, senha, perfil) VALUES ("{nome}", "{email}", "{senha}", "{perfil}")'
         cursor.execute(comando)
         conexao.commit()
         
@@ -259,6 +263,59 @@ def cadastrar():
         return render_template ("cadastrado.html")
     return render_template ("cadastrar.html")
 
+@app.route('/logado', methods=['GET', 'POST'])
+def logado():
+
+    conexao = mysql.connector.connect(
+        host='localhost',
+        user='root',
+        password='17081803',
+        database='dados',
+    )
+    cursor = conexao.cursor()
+
+    if request.method == 'POST':
+        
+        controle = (request.form.get('Listar'))
+                
+        Listar = controle
+       
+        if controle == Listar:
+        
+            comando = f'SELECT * FROM cadastro'
+            cursor.execute(comando)
+            resultado = cursor.fetchall()
+
+            cursor.close()
+            conexao.close()
+
+            return render_template ("listar.html", cadastro = resultado)
+    return render_template ("logado.html")
+
+@app.route('/listar', methods=['GET', 'POST'])
+def listar():
+        
+    conexao = mysql.connector.connect(
+        host='localhost',
+        user='root',
+        password='17081803',
+        database='dados',
+    )
+    cursor = conexao.cursor()
+
+    if request.method == 'POST':
+        nome = (request.form.get('Idexcluir'))
+        
+        comando = f'DELETE FROM cadastro WHERE id={nome}';
+        cursor.execute(comando)
+        conexao.commit()
+        
+        cursor.close()
+        conexao.close()
+
+        flash(f'Id {nome}, Cadastro excluido com sucesso!')
+        return render_template ("excluido.html")
+    return render_template ("listar.html")
 
 if __name__ == '__main__':
         app.run()

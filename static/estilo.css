@@ -1,0 +1,66 @@
+body {
+    background-color: rgb(245, 245, 245);
+    margin: 50px;
+}
+
+div1 {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: middle;
+    color: rgb(29, 31, 32);
+    text-decoration: double;
+    margin-bottom:20px;
+    width:10px;
+    height:35px;
+}
+
+div2 {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: middle;
+    color: rgb(29, 31, 32);
+    text-decoration: double;
+    margin-bottom:20px;
+    width:10px;
+    height:35px;
+}
+
+div3 {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: middle;
+    color: rgb(29, 31, 32);
+    text-decoration: double;
+    margin-bottom:20px;
+    width:10px;
+    height:35px;
+}
+
+h1 {
+    text-align: center;
+    color: rgb(0, 0, 0);
+}
+
+h2 {
+    text-align: center;
+    color: rgb(255, 22, 5);
+}
+
+h3 {
+    text-align: center;
+    color: rgb(104, 96, 151);
+}
+
+h4 {
+    text-align: center;
+    color: rgb(67, 169, 236);
+    text-decoration: double;
+}
+
+footer {
+    text-align: center;
+    color:black;
+}
