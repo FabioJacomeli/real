@@ -28,23 +28,6 @@
                                         {{menssagem[0]}}
                                     </div>
                             {% endif %}
-                            <h3> Lista completa de usuários cadastrados.</h3>
-                            {% if cadastro %}
-                                {% for r in cadastro %}
-                                <form method="POST" action="/listar">
-                                    <ul>
-                                        <input type="hidden" name="Idexcluir" value="{{r[0]}}">
-                                        <li>Id: {{r[0]}}</li>
-                                        <li>Nome: {{r[1]}}</li>
-                                        <li>e-mail: {{r[2]}}</li>
-                                        <li>Perfil: {{r[3]}}</li>
-                                    <!--<button type="submit">EXCLUIR</button>-->
-                                    </ul>
-                                </form>
-                                {% endfor %}
-                            {% else %}
-                            <h3> Não existe usuários cadastrados.</h3>
-                            {% endif %}
                             <div class="card-body">
                                 <form method="POST" action="/logado">
                                     <div>
