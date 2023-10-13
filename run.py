@@ -224,16 +224,49 @@ def domestic():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+
+    conexao = mysql.connector.connect(
+        host='localhost',
+        user='root',
+        password='17081803',
+        database='dados',
+    )
+    cursor = conexao.cursor()
+
     if request.method == 'POST':
-        email = request.form.get('username')
-        senha = request.form.get('password')
-        a = 'admin'
-        b = '***'
-        if email == a and senha == b:
-            return render_template ("logado.html", l = email)
-        else:
-            flash('Usuário não cadastrado!')
-            return redirect('/login')
+        
+        e = request.form.get('username')
+        s = request.form.get('password')
+                
+        if e and s != None:
+            
+            comando = f'SELECT * FROM cadastro'
+            cursor.execute(comando)
+            resultado = cursor.fetchall()
+
+            cursor.close()
+            conexao.close()
+
+            lista = [list(element) for element in resultado]
+
+            for r in lista:
+                for c in r:
+                    if c == e:
+                        for c in r:
+                            if c == s:
+                                for c in r:
+                                    if c == 'admin':
+                                        return render_template ("logado.html", l = e)
+                                else:
+                                    return render_template ("logado2.html", l = e)
+                        else:
+                            flash('Senha incorreta!')
+                            return redirect('/login')
+                
+            else:
+                flash('Usuário não cadastrado!')
+                return redirect('/login')
+    
     return render_template ("login.html")
     
 @app.route('/cadastrar', methods=['GET', 'POST'])
@@ -276,11 +309,9 @@ def logado():
 
     if request.method == 'POST':
         
-        controle = (request.form.get('Listar'))
-                
-        Listar = controle
-       
-        if controle == Listar:
+        controle = (request.form.get('Listar', 'Editar'))
+                        
+        if controle == 'Listar':
         
             comando = f'SELECT * FROM cadastro'
             cursor.execute(comando)
@@ -290,6 +321,18 @@ def logado():
             conexao.close()
 
             return render_template ("listar.html", cadastro = resultado)
+        
+        elif controle == 'Editar':
+
+            comando = f'SELECT * FROM cadastro'
+            cursor.execute(comando)
+            resultado = cursor.fetchall()
+
+            cursor.close()
+            conexao.close()
+
+            return render_template ("editar.html", cadastro = resultado)
+
     return render_template ("logado.html")
 
 @app.route('/listar', methods=['GET', 'POST'])
@@ -314,8 +357,40 @@ def listar():
         conexao.close()
 
         flash(f'Id {nome}, Cadastro excluido com sucesso!')
+        
         return render_template ("excluido.html")
+    
     return render_template ("listar.html")
+
+@app.route('/editar', methods=['GET', 'POST'])
+def editar():
+        
+    conexao = mysql.connector.connect(
+        host='localhost',
+        user='root',
+        password='17081803',
+        database='dados',
+    )
+    cursor = conexao.cursor()
+
+    if request.method == 'POST':
+        id = (request.form.get('Ideditar'))
+        nome = (request.form.get('Nome'))
+        email = (request.form.get('Email'))
+        perfil = (request.form.get('Usuário', 'Profissional'))
+
+        comando = f'UPDATE cadastro SET nome = "{nome}", email = "{email}", perfil = "{perfil}" WHERE id = {id}'
+        cursor.execute(comando)
+        conexao.commit()
+        
+        cursor.close()
+        conexao.close()
+
+        flash(f'Usuário {nome}, Cadastro editado com sucesso!')
+        
+        return render_template ("editado.html")
+    
+    return render_template ("editar.html")
 
 if __name__ == '__main__':
         app.run()
