@@ -20,14 +20,14 @@
         <div class="container">
                 <div class="row justify-content-center align-items-center" style="height:100vh">
                     <div class="col-10">
-                        <h1>Painel de controle:</h1>
+                        <h1>Painel de controle de {{l}}:</h1>
                         <div class="card">
                             <p>{{l}} você esta logado!</p>
                             <div class="card-body">
                                 <form method="POST" action="/logado">
                                     <div>
                                         <input type="radio" value="Listar" name="Listar"> Listar usuários cadastrados.
-                                        <!--<input type="radio" value="editar" name="Editar"> Editar usuários cadastrados.-->
+                                        <input type="radio" value="editar" name="Editar"> Editar usuários cadastrados.
                                     </div>
                                     </div>
                                     <input type="submit" value="Executar">

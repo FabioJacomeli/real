@@ -20,20 +20,18 @@
         <div class="container">
                 <div class="row justify-content-center align-items-center" style="height:100vh">
                     <div class="col-10">
-                        <h1>Painel de controle de {{l}}:</h1>
+                        <h1>Painel de controle:</h1>
                         <div class="card">
-                            <p>{{l}} você esta logado!</p>
+                            {%set menssagem = get_flashed_messages() %}
+                                {% if menssagem %}
+                                    <div class="flash_alerta">
+                                        {{menssagem[0]}}
+                                    </div>
+                            {% endif %}
                             <div class="card-body">
                                 <form method="POST" action="/logado">
                                     <div>
-                                        <input type="hidden" name="Id" value="{{l}}">
-                                        <input type="radio" value="e" name="E"> Atualizar dados.
-                                    </div>
-                                    </div>
-                                    <input type="submit" value="Executar">
-                                    <div>
-                                    <div>
-                                        <p><a href="/login">Sair</a><p>
+                                        <p><a href="/logado">Voltar!</a><p>
                                     </div>
                                 </form>
                             </div>
@@ -51,4 +49,4 @@
             </footer>
         </div>
     </main>
-</html>
+</html>	
